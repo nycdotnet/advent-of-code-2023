@@ -32,11 +32,7 @@ namespace Common
         {
             var assembly = Assembly.GetAssembly(typeof(TDefinedInAssembly));
 
-            using var stream = assembly!.GetManifestResourceStream(resourceName);
-            if (stream == null)
-            {
-                throw new KeyNotFoundException($"Unable to find resource {resourceName} in assembly \"{assembly.FullName}\".");
-            }
+            using var stream = assembly!.GetManifestResourceStream(resourceName) ?? throw new KeyNotFoundException($"Unable to find resource {resourceName} in assembly \"{assembly.FullName}\".");
             using var reader = new StreamReader(stream);
             return reader.ReadToEnd();
         }
