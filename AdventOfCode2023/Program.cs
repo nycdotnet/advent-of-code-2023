@@ -9,6 +9,7 @@ namespace AdventOfCode2023
         {
             var ticks = 0L;
             ticks += GetTicksAndReport(RunDay01);
+            ticks += GetTicksAndReport(RunDay02);
             Console.WriteLine($"Total time elapsed: {new TimeSpan(ticks).TotalMilliseconds}ms");
         }
 
@@ -16,6 +17,19 @@ namespace AdventOfCode2023
         {
             var input = Utils.GetResourceStringFromAssembly<Day01.Day01>("Day01.input.txt");
             var day = new Day01.Day01(input.ReplaceLineEndings("\n").Split('\n', StringSplitOptions.RemoveEmptyEntries));
+            Console.WriteLine($"{day.GetType().Name} answer 1: {day.GetAnswerForPart1()}");
+            Console.WriteLine($"{day.GetType().Name} answer 2: {day.GetAnswerForPart2()}");
+        }
+
+        private static void RunDay02()
+        {
+            var input = Utils.GetResourceStringFromAssembly<Day02.Day02>("Day02.input.txt");
+            var day = new Day02.Day02(input.ReplaceLineEndings("\n").Split('\n', StringSplitOptions.RemoveEmptyEntries))
+            {
+                RedCubes = 12,
+                GreenCubes = 13,
+                BlueCubes = 14
+            };
             Console.WriteLine($"{day.GetType().Name} answer 1: {day.GetAnswerForPart1()}");
             Console.WriteLine($"{day.GetType().Name} answer 2: {day.GetAnswerForPart2()}");
         }
